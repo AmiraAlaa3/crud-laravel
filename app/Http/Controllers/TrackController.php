@@ -20,6 +20,12 @@ class TrackController extends Controller
     function destroy($id)
     {
         $track = tracks::findOrFail($id);
+        if ($track->logo) {
+            $imagePath = public_path('uploads') . '/' . $track->logo;
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
         $track->delete();
         return to_route(tracks.index);
     }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CourseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,3 +64,7 @@ Route::delete('/students/{id}',[StudentController::class,'destroy'])->name('stud
 Route::post('/students/store',[StudentController::class,'store'])->name('students.store');
 Route::get('/students/{id}/edit',[StudentController::class,'edit'])->name('students.edit');
 Route::put('/students/{id}/update',[StudentController::class,'update'])->name('students.update');
+
+
+//lab 4
+Route::resource('courses',CourseController::class);

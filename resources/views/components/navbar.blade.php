@@ -12,6 +12,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('tracks.index') }}">All Tracks</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('courses.index') }}">All Courses</a>
+                    </li>
                 </ul>
             </div>
         </div>

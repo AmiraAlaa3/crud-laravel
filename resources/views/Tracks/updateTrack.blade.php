@@ -16,8 +16,7 @@
         @method('PUT')
         <div class="mb-3">
           <label for="exampleInputName" class="form-label">Name</label>
-          <input name="name" type="Name" value={{$track->name}}  class="form-control" id="exampleInputName" aria-describedby="NameHelp">
-
+          <input name="name" type="text" value="{{ old('name', $track->name) }}"  class="form-control" id="exampleInputName" aria-describedby="NameHelp">
         </div>
 
         <div class="mb-3">
@@ -28,12 +27,12 @@
 
         <div class="mb-3">
           <label for="exampleInputbranchname" class="form-label">Branch Name </label>
-          <input name="branch_name" type="text" value={{$track->branch_name}} class="form-control" id="exampleInputbranchname" aria-describedby="branch_name">
+          <input name="branch_name" type="text" value="{{old('branch_name',$track->branch_name)}}" class="form-control" id="exampleInputbranchname" aria-describedby="branch_name">
         </div>
 
         <div class="mb-3">
           <label for="exampleInputtracktype" class="form-label">Track Type </label>
-          <input name="track_type" type="text" value={{$track->track_type}} class="form-control" id="exampleInputtracktype" aria-describedby="track_type">
+          <input name="track_type" type="text" value='{{old('track_type',$track->track_type)}}' class="form-control" id="exampleInputtracktype" aria-describedby="track_type">
         </div>
 
         <div class="mb-3">
@@ -50,7 +49,7 @@
         
         <div class="mb-3">
             <label for="exampleInputdescription" class="form-label">Description</label>
-            <input name="description" type="text" value={{$track->description}}  class="form-control" id="exampleInputdescription" aria-describedby="description">
+            <input name="description" type="text" value='{{old("Description",$track->description)}}' class="form-control" id="exampleInputdescription" aria-describedby="description">
         </div>
           
         <button type="submit" class="btn btn-primary">Update</button>

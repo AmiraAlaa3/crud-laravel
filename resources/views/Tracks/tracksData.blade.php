@@ -32,7 +32,7 @@
             <td>{{ $tarck->name }}</td>
             <td>
                 @if ($tarck->logo)
-                    <img src="{{ asset('uploads/' . $tarck->logo) }}" alt="Logo" width="100" height="100">
+                    <img src="{{ asset('uploads/' . $tarck->logo) }}" alt="Logo" class="rounded-circle" width="75" height="75">
                 @else
                     No Logo
                 @endif

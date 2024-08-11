@@ -19,6 +19,13 @@ class StudentController extends Controller
     function destroy($id)
     {
         $student=Student::findOrFail($id);
+        if ($student->image) {
+            $imagePath = public_path('uploads') . '/' . $student->image;
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+        
         $student->delete();
         return to_route('students.index');
     }
@@ -87,7 +94,7 @@ class StudentController extends Controller
   
           $student->update($validatedData);
   
-          return redirect()->route('students.index');
+          return to_route('students.index');
       }
 
 }
