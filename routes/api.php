@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\TrackController;
+use App\Http\Controllers\Api\CourseController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //lab 5
 Route::apiResource('students',StudentController::class);
 Route::apiResource('tracks',TrackController::class);
+Route::apiResource('courses',CourseController::class);

@@ -98,7 +98,11 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::find($id);
+        if (!$student) {
+            return response()->json(['message' => 'student not found'], 404);
+        }
+
         if ($student->image) {
             $imagePath = 'public/uploads/' . $student->image;
             if (Storage::exists($imagePath)) {

@@ -100,7 +100,10 @@ class TrackController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {   $track = tracks::findorFail($id);
+    {   $track = tracks::find($id);
+        if (!$track) {
+            return response()->json(['error' => 'Track not found'], 404);
+        }
         if ($track->image) {
             $imagePath = 'public/uploads/' . $track->image;
             if (Storage::exists($imagePath)) {
