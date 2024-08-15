@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Student;
+use App\Models\tracks;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -25,24 +26,26 @@ class StudentController extends Controller
                 unlink($imagePath);
             }
         }
-        
+
         $student->delete();
         return to_route('students.index');
     }
     function create()
     {
-       return view('students.createStudent');
+      $tracks = tracks::all();
+       return view('students.createStudent',compact("tracks"));
     }
     public function store(Request $request)
-    {   
-    
+    {
+
         $validatedData = $request->validate([
             'name' => 'required|string',
             'email' => 'nullable|string',
             'grade' => 'required|integer',
             'gender' => 'required|string',
             'address' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif', 
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'track_id' => 'nullable|integer'
         ]);
 
         $fileName = null;
@@ -54,34 +57,37 @@ class StudentController extends Controller
             $file->move(public_path('uploads'), $fileName);
         }
 
-        $student = new Student(); 
+        $student = new Student();
         $student->name = $validatedData['name'];
         $student->email = $validatedData['email'];
         $student->grade = $validatedData['grade'];
         $student->gender = $validatedData['gender'];
         $student->address = $validatedData['address'];
-        $student->image = $fileName; 
+        $student->image = $fileName;
+        $student->track_id = $validatedData['track_id'];
         $student->save();
-        return to_route('students.index');
+        return to_route('students.show',$student->id);
       }
 
       function edit($id)
       {
           $student = Student::findOrFail($id);
-          return view('students.updateStudent',compact("student"));
+          $tracks = tracks::all();
+          return view('students.updateStudent',compact("student","tracks"));
       }
-   
+
       function update(Request $request, $id)
       {
           $student = Student::findOrFail($id);
-  
+
           $validatedData = $request->validate([
             'name' => 'required|string',
             'email' => 'nullable|string',
             'grade' => 'required|integer',
             'gender' => 'required|string',
             'address' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif', 
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'track_id' => 'nullable|integer'
         ]);
 
           if ($request->hasFile('image')) {
@@ -89,11 +95,11 @@ class StudentController extends Controller
               $extension = $file->getClientOriginalExtension();
               $fileName = time() . '.' . $extension;
               $file->move(public_path('uploads'), $fileName);
-              $validatedData['image'] = $fileName; 
+              $validatedData['image'] = $fileName;
           }
-  
+
           $student->update($validatedData);
-  
+
           return to_route('students.index');
       }
 

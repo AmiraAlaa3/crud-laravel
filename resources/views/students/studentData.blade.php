@@ -19,6 +19,7 @@
             <th scope="col">Address</th>
             <th scope="col">gender</th>
             <th scope="col">Email</th>
+            <th scope="col">Track</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -36,6 +37,11 @@
             <td>{{ $student->address}}</td>
             <td>{{ $student->gender }}</td>
             <td>{{ $student->email }}</td>
+            @if($student->track_id)
+                <td><a href="{{route('tracks.show',$student->track_id)}}">{{ $student->track->name}}</a></td>
+            @else
+                <td>Not assigned</td>
+            @endif
             <td>
                 <a href="{{route('students.index')}}">
                     <x-action-button type="warning">Back</x-action-button>

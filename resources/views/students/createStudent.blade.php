@@ -11,7 +11,7 @@
   <x-navbar />
   <div class="container">
     <h1 class="text-center mt-5 display-4">Create New Student</h1>
- 
+
     <form class="border p-5 bordered w-75 m-auto my-5" method="post" action="{{route('students.store')}}" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
@@ -46,6 +46,15 @@
             </label>
           </div>
 
+          <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" name="track_id">
+                <option selected disabled value="">Select your track</option>
+                @foreach ($tracks as $track )
+                <option value="{{$track->id}}">{{$track->name}}</option>
+                @endforeach
+              </select>
+         </div>
+         
         <div class="mb-3">
           <label for="address" class="form-label">Address</label>
           <input name="address" type="text" class="form-control" id="address" aria-describedby="address">
@@ -55,7 +64,7 @@
           <label for="image" class="form-label">Student Image</label>
           <input name="image" type="file" class="form-control" id="image" aria-describedby="image">
         </div>
-        
+
         <button type="submit" class="btn btn-primary">Create</button>
       </form>
     </div>

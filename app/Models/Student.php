@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
-    protected $fillable=['name','grade','image','address','email','gender'];
+    protected $fillable=['name','grade','image','address','email','gender','track_id'];
+    function track(){
+       return $this->belongsTo(tracks::class);
+    }
 }

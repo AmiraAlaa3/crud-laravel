@@ -18,7 +18,7 @@ use App\Http\Controllers\CourseController;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-// lab 1 
+// lab 1
 Route::get('/users',function()
 {
    $users=[

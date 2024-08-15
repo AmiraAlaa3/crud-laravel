@@ -51,7 +51,14 @@
               Female
             </label>
         </div>
-
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" name="track_id">
+                <option selected disabled value="">{{ $student->track->name}}</option>
+                @foreach ($tracks as $track )
+                <option value="{{$track->id}}">{{$track->name}}</option>
+                @endforeach
+              </select>
+         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Student image</label>
             <input name="image" type="file" class="form-control" id="image">
@@ -59,7 +66,7 @@
                 <img src="{{ asset('uploads/' . $student->image) }}" alt="image" width="100" class="mt-2">
             @endif
         </div>
-          
+
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
   </div>
