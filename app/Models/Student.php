@@ -10,6 +10,6 @@ class Student extends Model
     use HasFactory;
     protected $fillable=['name','grade','image','address','email','gender','track_id'];
     function track(){
-       return $this->belongsTo(tracks::class);
+       return $this->belongsTo(tracks::class,'track_id');
     }
 }

@@ -53,7 +53,9 @@
         </div>
         <div class="mb-3">
             <select class="form-select" aria-label="Default select example" name="track_id">
-                <option selected disabled value="">{{ $student->track->name}}</option>
+                <option selected disabled value="">
+                    {{$student->track ? $student->track->name : 'select track'}}
+                </option>
                 @foreach ($tracks as $track )
                 <option value="{{$track->id}}">{{$track->name}}</option>
                 @endforeach
